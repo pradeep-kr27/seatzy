@@ -5,7 +5,6 @@ export const addShow = async (payload) => {
     const response = await axiosInstance.post("/api/shows/add-show", payload);
     return response.data;
   } catch (err) {
-    console.log(err);
     return err.message;
   }
 };
@@ -16,7 +15,6 @@ export const updateShow = async (payload) => {
     console.log(payload, response);
     return response.data;
   } catch (err) {
-    console.log(err);
     return err.message;
   }
 };
@@ -28,7 +26,6 @@ export const getShowsByTheatre = async (payload) => {
     );
     return response.data;
   } catch (err) {
-    console.log(err);
     return err.message;
   }
 };
@@ -40,7 +37,6 @@ export const deleteShow = async (payload) => {
     );
     return response.data;
   } catch (err) {
-    console.log(err);
     return err.message;
   }
 };
@@ -52,7 +48,6 @@ export const getAllTheatresByMovie = async ({ movie, date }) => {
     );
     return response.data;
   } catch (err) {
-    console.log(err);
     return err.message;
   }
 };
@@ -64,7 +59,6 @@ export const getShowById = async (payload) => {
     );
     return response.data;
   } catch (err) {
-    console.log(err);
     return err.message;
   }
 };

@@ -18,7 +18,6 @@ export const getAllTheatresForAdmin = async () => {
     const response = await axiosInstance.get("/api/theatres/get-all-theatres");
     return response.data;
   } catch (err) {
-    console.log(err);
     return err.response.data;
   }
 };
@@ -30,7 +29,6 @@ export const getAllTheatres = async (ownerId) => {
     );
     return response.data;
   } catch (err) {
-    console.log(err);
     return err.response.data;
   }
 };
@@ -43,7 +41,6 @@ export const updateTheatre = async (payload) => {
     );
     return response.data;
   } catch (err) {
-    console.log(err);
     return err.response.data;
   }
 };
@@ -55,7 +52,6 @@ export const deleteTheatre = async (payload) => {
     );
     return response.data;
   } catch (err) {
-    console.log(err);
     return err.response.data;
   }
 };

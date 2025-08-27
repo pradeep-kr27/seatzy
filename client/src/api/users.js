@@ -7,7 +7,6 @@ export const RegisterUser = async (value) => {
     const response = await axiosInstance.post("api/users/register", value);
     return response.data;
   } catch (err) {
-    console.log(err);
     // If the server returns an error response, return the error data
     if (err.response && err.response.data) {
       return err.response.data;
