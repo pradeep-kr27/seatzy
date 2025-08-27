@@ -1,0 +1,105 @@
+import logo from "./logo.svg";
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { Provider, useSelector } from "react-redux";
+import store from "./redux/store";
+import Admin from "./pages/Admin";
+import Partner from "./pages/Partner";
+import Profile from "./pages/User";
+import SingleMovie from "./pages/Home/SingleMovie";
+import BookShow from "./pages/Home/BookShow";
+import Forget from "./pages/User/ForgetPassword";
+import Reset from "./pages/User/ResetPassword";
+
+// Enhanced Loader Component
+function Loader() {
+  const { loading } = useSelector((state) => state.loaders);
+
+  if (!loading) return null;
+
+  return (
+    <div className="loader-container">
+      <div className="modern-loader"></div>
+      <div className="loader-text">Loading...</div>
+    </div>
+  );
+}
+
+function AppContent() {
+  return (
+    <div className="App">
+      <Loader />
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path={"/"}
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route path={"/login"} element={<Login />} />
+          <Route path={"/register"} element={<Register />} />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <Admin />
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
+            path="/partner"
+            element={
+              <ProtectedRoute>
+                <Partner />
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
+            path="/movie/:id"
+            element={
+              <ProtectedRoute>
+                <SingleMovie />
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
+            path="/book-show"
+            element={
+              <ProtectedRoute>
+                <BookShow />
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route path="/forget" element={<Forget />} />
+          <Route path="/reset/:email" element={<Reset />} />
+          <Route path="/reset" element={<Reset />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Provider store={store}>
+      <AppContent />
+    </Provider>
+  );
+}
+
+export default App;
