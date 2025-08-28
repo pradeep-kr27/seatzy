@@ -150,10 +150,30 @@ const ProtectedRoute = ({ children }) => {
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.5rem'
+                gap: '0.75rem'
               }}
             >
-              <div className="logo-text">🎬 Seatzy</div>
+              <img 
+                src="/seatzy-logo-100-100.png" 
+                alt="Seatzy Logo" 
+                style={{ 
+                  height: '50px', 
+                  width: 'auto',
+                  transition: 'transform 0.2s ease'
+                }}
+                onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
+                onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+              />
+              <span 
+                style={{
+                  color: 'white',
+                  fontSize: '1.75rem',
+                  fontWeight: '700',
+                  letterSpacing: '0.5px'
+                }}
+              >
+                Seatzy
+              </span>
             </div>
 
             {/* Center - Navigation */}

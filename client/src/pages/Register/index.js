@@ -30,14 +30,21 @@ function Register() {
       <main className="App-header">
         <div className="auth-card">
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            <div style={{ overflow: 'hidden' }}>
+              <img
+                src="/seatzy-logo-100-100.png"
+                alt="Seatzy Logo"
+                // style={{ height: '48px', width: 'auto' }}
+              />
+            </div>
             <Title level={2} style={{ color: '#1a1a2e', margin: 0 }}>
-              Join Seatzy Today
+              Join Today
             </Title>
             <Text type="secondary" style={{ fontSize: '1rem' }}>
               Create your account to start booking movies
             </Text>
           </div>
-          
+
           <Form layout="vertical" onFinish={onFinish} size="large">
             <Form.Item
               label="Full Name"
@@ -108,7 +115,7 @@ function Register() {
                 htmlType="submit"
                 block
                 loading={loading}
-                style={{ 
+                style={{
                   height: '48px',
                   fontSize: '1rem',
                   fontWeight: '600',

@@ -33,14 +33,20 @@ function Login() {
       <main className="App-header">
         <div className="auth-card">
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            <div style={{ overflow: 'hidden' }}>
+              <img
+                src="/seatzy-logo-100-100.png"
+                alt="Seatzy Logo"
+              />
+            </div>
             <Title level={2} style={{ color: '#1a1a2e', margin: 0 }}>
-              Welcome Back to Seatzy
+              Welcome Back
             </Title>
             <Text type="secondary" style={{ fontSize: '1rem' }}>
               Sign in to book your favorite movies
             </Text>
           </div>
-          
+
           <Form layout="vertical" onFinish={onFinish} size="large">
             <Form.Item
               label="Email Address"
@@ -74,7 +80,7 @@ function Login() {
                 htmlType="submit"
                 block
                 loading={loading}
-                style={{ 
+                style={{
                   height: '48px',
                   fontSize: '1rem',
                   fontWeight: '600',
