@@ -1265,6 +1265,7 @@ hr {
   background: var(--light-bg);
 }
 
-:where(.css-dev-only-do-not-override-1pg9a38).ant-row {
+.justify-content-center {
+  display: flex;
   justify-content: center;
 }
