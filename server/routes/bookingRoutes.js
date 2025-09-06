@@ -15,6 +15,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const authMiddleware = require("../middlewares/authMiddleware");
 const Booking = require("../models/bookingModel");
 const Show = require("../models/showModel");
+const User = require("../models/userModel");
 const EmailHelper = require("../utils/emailHelper");
 
 router.post("/make-payment", authMiddleware, async (req, res) => {
@@ -46,11 +47,47 @@ router.post("/book-show", authMiddleware, async (req, res) => {
   try {
     const newBooking = new Booking(req.body);
     await newBooking.save();
-    const show = await Show.findById(req.body.show).populate("movie");
+    
+    // Get show details with populated movie and theatre
+    const show = await Show.findById(req.body.show)
+      .populate("movie")
+      .populate("theatre");
+    
+    // Get user details
+    const user = await User.findById(req.body.user);
+    
+    // Update booked seats
     const updatedBookedSeats = [...show.bookedSeats, ...req.body.seats];
     await Show.findByIdAndUpdate(req.body.show, {
       bookedSeats: updatedBookedSeats,
     });
+
+    // Prepare email data for booking confirmation
+    const emailData = {
+      userName: user.name,
+      userEmail: user.email,
+      movieName: show.movie.title,
+      theatreName: show.theatre.name,
+      showDate: new Date(show.date).toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      }),
+      showTime: show.time,
+      seats: req.body.seats.map(seat => `<span class="seats">${seat}</span>`).join(' '),
+      transactionId: req.body.transactionId
+    };
+
+    // Send booking confirmation email
+    try {
+      await EmailHelper("booking_confirmation.html", user.email, emailData, 'booking_confirmation');
+      console.log(`Booking confirmation email sent to ${user.email}`);
+    } catch (emailError) {
+      console.log("Failed to send confirmation email:", emailError);
+      // Don't fail the booking if email fails
+    }
+
     res.send({
       success: true,
       message: "Booking Successful",

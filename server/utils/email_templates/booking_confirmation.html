@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Booking Confirmation - Seatzy</title>
+    <style>
+      /* Inline styles for email compatibility */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #e0e0e0;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 10px;
+      }
+
+      .booking-details {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border-left: 4px solid #007bff;
+      }
+
+      .movie-info {
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 6px;
+        margin-bottom: 15px;
+        border: 1px solid #e0e0e0;
+      }
+
+      .detail-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding: 5px 0;
+      }
+
+      .detail-label {
+        font-weight: bold;
+        color: #495057;
+      }
+
+      .detail-value {
+        color: #212529;
+      }
+
+      .seats {
+        background-color: #28a745;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-weight: bold;
+        display: inline-block;
+        margin: 2px;
+      }
+
+      .transaction-info {
+        background-color: #e8f5e8;
+        padding: 15px;
+        border-radius: 6px;
+        margin: 20px 0;
+        text-align: center;
+      }
+
+      .transaction-id {
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+        background-color: #fff;
+        padding: 8px;
+        border-radius: 4px;
+        color: #495057;
+        border: 1px solid #ced4da;
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #e0e0e0;
+        color: #6c757d;
+        font-size: 14px;
+      }
+
+      .note {
+        background-color: #fff3cd;
+        border: 1px solid #ffeaa7;
+        color: #856404;
+        padding: 15px;
+        border-radius: 6px;
+        margin: 20px 0;
+      }
+
+      .success-icon {
+        color: #28a745;
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="logo">🎬 SEATZY</div>
+        <div class="success-icon">✅</div>
+        <h1 style="color: #28a745; margin: 0;">Booking Confirmed!</h1>
+        <p style="margin: 5px 0; color: #6c757d;">Thank you for choosing Seatzy</p>
+      </div>
+
+      <div class="booking-details">
+        <h2 style="color: #2c3e50; margin-top: 0;">Booking Details</h2>
+        
+        <div class="movie-info">
+          <div class="detail-row">
+            <span class="detail-label">Movie:</span>
+            <span class="detail-value">#{movieName}</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Theatre:</span>
+            <span class="detail-value">#{theatreName}</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Date:</span>
+            <span class="detail-value">#{showDate}</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Time:</span>
+            <span class="detail-value">#{showTime}</span>
+          </div>
+        </div>
+
+        <div class="detail-row">
+          <span class="detail-label">Booked By:</span>
+          <span class="detail-value">#{userName}</span>
+        </div>
+        
+        <div class="detail-row">
+          <span class="detail-label">Email:</span>
+          <span class="detail-value">#{userEmail}</span>
+        </div>
+
+        <div style="margin: 15px 0;">
+          <span class="detail-label">Selected Seats:</span><br>
+          <div style="margin-top: 8px;">
+            #{seats}
+          </div>
+        </div>
+      </div>
+
+      <div class="transaction-info">
+        <h3 style="color: #28a745; margin-top: 0;">Payment Successful</h3>
+        <p style="margin: 5px 0;"><strong>Transaction ID:</strong></p>
+        <div class="transaction-id">#{transactionId}</div>
+      </div>
+
+      <div class="note">
+        <strong>Important:</strong> Please arrive at the theatre at least 15 minutes before the show time. 
+        Carry a valid ID proof along with this confirmation email or booking reference.
+      </div>
+
+      <div class="footer">
+        <p>This is an automated email from Seatzy. Please do not reply to this email.</p>
+        <p>For any queries, contact us at support@seatzy.com</p>
+        <p>&copy; 2025 Seatzy. All rights reserved.</p>
+      </div>
+    </div>
+  </body>
+</html>
